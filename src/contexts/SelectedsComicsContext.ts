@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
 import { ComicSelectContextType } from "../interfaces/ComicSelect";
 
-const selectedContext = createContext<ComicSelectContextType>({
+const SelectedContext = createContext<ComicSelectContextType>({
   comicsSelect: [],
   setComicsSelect: () => {},
 });
 
 export function useSelectedComics(): ComicSelectContextType {
-  return useContext(selectedContext);
+  return useContext(SelectedContext);
 }
 
-export default selectedContext;
+export default SelectedContext;

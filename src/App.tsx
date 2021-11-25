@@ -19,13 +19,10 @@ import { getUrlImage } from "./helpers";
 import { Data, Result } from "./interfaces/marvel";
 import MarvelApi from "./services/marvelApi";
 import "./App.css";
+import SelectedContext from "./contexts/SelectedsComicsContext";
 
 function Loading() {
-  return (
-    <div>
-      <img src="/loading.gif" />
-    </div>
-  );
+  return <div>{/* <img src="/loading.gif" /> */}</div>;
 }
 function App() {
   const [comics, setComics] = React.useState<Result[]>();
@@ -33,6 +30,7 @@ function App() {
   const [searchText, setSearchText] = React.useState<string>("");
   const [page, setPage] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
+  const { comicsSelect, setComicsSelect } = React.useContext(SelectedContext);
 
   React.useEffect(() => {
     setLoading(true);
@@ -56,8 +54,9 @@ function App() {
   return (
     <div className="App">
       <header className="">
+        {comicsSelect.map((a) => a.title)}
         <AppBar position="relative" sx={{ mb: 1 }}>
-          <Toolbar
+          {/* <Toolbar
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -75,7 +74,7 @@ function App() {
                 }}
               />
             </Grid>
-          </Toolbar>
+          </Toolbar> */}
         </AppBar>
       </header>
       <main className={loading ? "App-Center" : ""}>
@@ -87,24 +86,30 @@ function App() {
               {comics?.map((comic) => (
                 <Grid item xs={12} sm={6} md={3}>
                   <Card>
-                    <CardMedia
+                    {/* <CardMedia
                       component="img"
                       height="140"
                       image={getUrlImage(comic)}
                       alt={comic.title}
-                    />
+                    /> */}
                     <CardContent>
-                      <Typography variant="h6">
+                      {/* <Typography variant="h6">
                         {comic.title.length > 20
                           ? `${comic.title.substring(0, 20)}...`
                           : comic.title}
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                     <CardActions disableSpacing={true}>
-                      <Button size="small" color="secondary">
+                      <Button
+                        onClick={() => {
+                          setComicsSelect({ id: comic.id, title: comic.title });
+                        }}
+                        size="small"
+                        color="secondary"
+                      >
                         Selecionar
                       </Button>
-                      <Button
+                      {/* <Button
                         onClick={() => {
                           setSelectedComic(comic);
                         }}
@@ -112,7 +117,7 @@ function App() {
                         color="primary"
                       >
                         Detalhes
-                      </Button>
+                      </Button> */}
                     </CardActions>
                   </Card>
                 </Grid>
