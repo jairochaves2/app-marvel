@@ -30,7 +30,7 @@ function App() {
       const data: Data = res.data;
       setComics(data.results);
     });
-  }, [searchText.length === 0, page]);
+  }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     if (searchText) {
       MarvelApi.getComicsByTitle(searchText, page).then((res) => {
