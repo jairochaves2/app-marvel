@@ -1,0 +1,12 @@
+.App-Center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App-Center img {
+  height: 100px;
+}
+body {
+  height: 100vh;
+  background-color: brown;
+}
