@@ -16,7 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import { getUrlImage } from "./helpers";
-import { Data, Result } from "./interfaces";
+import { Data, Result } from "./interfaces/marvel";
 import MarvelApi from "./services/marvelApi";
 import "./App.css";
 

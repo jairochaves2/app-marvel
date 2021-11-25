@@ -1,5 +1,5 @@
 import md5 from "md5";
-import { Result } from "../interfaces";
+import { Result } from "../interfaces/marvel";
 import { HashMarvel } from "../interfaces/hash";
 import { ImagesVariants } from "../types";
 

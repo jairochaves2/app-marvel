@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getHashTsApiKey, getOffset } from "../../helpers";
-import { RootObject } from "../../interfaces";
+import { RootObject } from "../../interfaces/marvel";
 
 const api = axios.create({
   baseURL: "https://gateway.marvel.com/v1/public/",
