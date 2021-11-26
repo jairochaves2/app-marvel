@@ -6,8 +6,14 @@ const SelectionProvider: React.FC = ({ children }) => {
   const [comicsSelect, setSelectedComics] = React.useState<ComicSelect[]>([]);
   const toggleComics = (comic: any) => {
     const data = comicsSelect;
-    data.push(comic);
-    setSelectedComics([...data]);
+    const index = data.findIndex((c) => c.id === comic.id);
+    if (index === -1) {
+      setSelectedComics([...data, comic]);
+    } else {
+      const newSelectedComics = [...data];
+      newSelectedComics.splice(index, 1);
+      setSelectedComics(newSelectedComics);
+    }
   };
 
   return (
