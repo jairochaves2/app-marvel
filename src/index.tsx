@@ -10,6 +10,7 @@ import SearchTextProvider from "./providers/comics/SearchText.provider";
 import LoadingProvider from "./providers/Loading.provider";
 import ComicToDetailProvider from "./providers/comics/ComicToDetail.provider";
 import ComicListProvider from "./providers/comics/ComicList.provider";
+import RouteProvider from "./routes";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,7 +21,9 @@ ReactDOM.render(
             <SearchTextProvider>
               <LoadingProvider>
                 <ComicToDetailProvider>
-                  <App />
+                  <RouteProvider>
+                    <App />
+                  </RouteProvider>
                 </ComicToDetailProvider>
               </LoadingProvider>
             </SearchTextProvider>

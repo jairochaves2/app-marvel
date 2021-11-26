@@ -20,12 +20,6 @@ import {
 } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 import "./App.css";
-import { useComicDetail } from "./contexts/comics/ComicToDetail.context";
-import { useSearchText } from "./contexts/comics/SearchText.context";
-import { useSelectedComics } from "./contexts/comics/SelectionComics.context";
-import { useTotalComics } from "./contexts/comics/TotalComics.context";
-import { useLoading } from "./contexts/Loading.context";
-import { usePage } from "./contexts/PageSelect.context";
 import {
   getQuantidadePaginas,
   getUrlImage,
@@ -33,13 +27,20 @@ import {
 } from "./helpers/MarvelApi.helper";
 import { Data } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
-import { useComicList } from "./contexts/comics/ComicList.context";
+import {
+  useComicDetail,
+  useComicList,
+  useLoading,
+  usePage,
+  useSearchText,
+  useSelectedComics,
+  useTotalComics,
+} from "./hooks/contexts.hooks";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
 }
 function App() {
-  
   const { comics, setComics } = useComicList();
   const { comicsDetail, setComicsDetail } = useComicDetail();
   const { comicsSelect, setComicsSelect } = useSelectedComics();
@@ -63,7 +64,6 @@ function App() {
       });
   }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
-    console.log("searchText", searchText);
     if (searchText) {
       MarvelApi.getComicsByTitle(searchText, page).then((res) => {
         const data: Data = res.data;
