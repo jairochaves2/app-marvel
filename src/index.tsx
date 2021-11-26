@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import SelectionProvider from "./providers/ComicSelection.provider";
+import SelectionProvider from "./providers/comics/ComicSelection.provider";
 import PageProvider from "./providers/PageSelect.provider";
-import TotalComicsProvider from "./providers/TotalComics.provider";
+import TotalComicsProvider from "./providers/comics/TotalComics.provider";
 
 ReactDOM.render(
   <React.StrictMode>

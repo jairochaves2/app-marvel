@@ -1,5 +1,5 @@
 import React from "react";
-import TotalComicsContext from "../contexts/comics/TotalComics.context";
+import TotalComicsContext from "../../contexts/comics/TotalComics.context";
 
 const TotalComicsProvider: React.FC = ({ children }) => {
   const [totalComics, setTotalComicsState] = React.useState<number>(1);
