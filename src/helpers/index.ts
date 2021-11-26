@@ -2,6 +2,8 @@ import md5 from "md5";
 import { Result } from "../interfaces/marvel";
 import { HashMarvel } from "../interfaces/hash";
 import { ImagesVariants } from "../types";
+import { ITEMS_PER_PAGE } from "../services/marvelApi";
+import ComicSelect from "../interfaces/ComicSelect";
 
 export function getUrlImage(
   comic: Result,
@@ -19,4 +21,14 @@ export function getHashTsApiKey(): HashMarvel {
 export function getOffset(page: number, itemsPerPage: number): number {
   const offset = (page - 1) * itemsPerPage;
   return offset < 0 ? 0 : offset;
+}
+export function getQuantidadePaginas(totalItems: number): number {
+  if (totalItems <= 0) {
+    return 1;
+  }
+  const quantidadePaginas = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  return quantidadePaginas;
+}
+export function hasComicInArray(comics: ComicSelect[], id: number): boolean {
+  return comics.some((someComic) => someComic.id === id);
 }
