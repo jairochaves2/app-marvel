@@ -16,9 +16,10 @@ export default function DialogDetail() {
         setComicsDetail(undefined);
       }}
       open={!!comicsDetail}
+      // open={true}
     >
-        <DialogContentComic />
-        <DialogActionComic />
+      <DialogContentComic />
+      <DialogActionComic />
     </Dialog>
   );
 }

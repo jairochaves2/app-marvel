@@ -12,9 +12,12 @@ import ComicSelect from "../interfaces/contexts/comics/ComicSelection.interface"
  * @returns Retorna a url da imagem baseado no comic thumbnail path e extension
  */
 export function getUrlImage(
-  comic: Result,
+  comic: Result | undefined,
   type: ImagesVariants = "standard_fantastic"
 ): string {
+  if (!comic) {
+    return "";
+  }
   return `${comic.thumbnail.path}/${type}.${comic.thumbnail.extension}`;
 }
 

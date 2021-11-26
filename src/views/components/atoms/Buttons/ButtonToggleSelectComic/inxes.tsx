@@ -10,6 +10,7 @@ interface Props {
 
 export default function ButtonToggleSelectComic({ comic }: Props) {
   const { comicsSelect, setComicsSelect } = useSelectedComics();
+  const hasComic = hasComicInArray(comicsSelect, comic?.id ? comic.id : -1);
   return (
     <Button
       onClick={() => {
@@ -18,12 +19,10 @@ export default function ButtonToggleSelectComic({ comic }: Props) {
         }
       }}
       size="small"
-      color="success"
-      variant="outlined"
+      color={hasComic?"warning":"success"}
+      variant={hasComic?"outlined":"contained"}
     >
-      {hasComicInArray(comicsSelect, comic?.id ? comic.id : -1)
-        ? "Remover"
-        : "Adicionar"}
+      {hasComic ? "Remover" : "Adicionar"}
     </Button>
   );
 }
