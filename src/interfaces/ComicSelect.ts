@@ -6,5 +6,4 @@ export default interface ComicSelect {
 export interface ComicSelectContextType {
   comicsSelect: ComicSelect[];
   setComicsSelect: (comic: ComicSelect) => void;
-  
 }
