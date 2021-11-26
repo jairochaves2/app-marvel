@@ -1,4 +1,5 @@
 import React from "react";
+import { LocationOn } from "@mui/icons-material";
 import {
   AppBar,
   Button,
@@ -15,35 +16,36 @@ import {
   Input,
   Pagination,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
+import { lightBlue } from "@mui/material/colors";
+import "./App.css";
+import { useComicDetail } from "./contexts/comics/ComicToDetail.context";
+import { useSearchText } from "./contexts/comics/SearchText.context";
+import { useSelectedComics } from "./contexts/comics/SelectionComics.context";
+import { useTotalComics } from "./contexts/comics/TotalComics.context";
+import { useLoading } from "./contexts/Loading.context";
+import { usePage } from "./contexts/PageSelect.context";
 import {
   getQuantidadePaginas,
   getUrlImage,
-  hasComicInArray,
+  hasComicInArray
 } from "./helpers/MarvelApi.helper";
 import { Data, Result } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
-import "./App.css";
-import { useSelectedComics } from "./contexts/comics/SelectionComics.context";
-import { lightBlue } from "@mui/material/colors";
-import { LocationOn } from "@mui/icons-material";
-import { usePage } from "./contexts/PageSelect.context";
-import { useTotalComics } from "./contexts/comics/TotalComics.context";
-import { useSearchText } from "./contexts/comics/SearchText.context";
-import { useLoading } from "./contexts/Loading.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
 }
 function App() {
   const [comics, setComics] = React.useState<Result[]>();
-  const [selectedComic, setSelectedComic] = React.useState<Result>();
 
   const { comicsSelect, setComicsSelect } = useSelectedComics();
-  const { page, setPage } = usePage();
   const { totalComics, setTotalComics } = useTotalComics();
+  const { comicsDetail, setComicsDetail } = useComicDetail();
   const { searchText, setSearchText } = useSearchText();
+
+  const { page, setPage } = usePage();
   const { loading, setLoading } = useLoading();
 
   React.useEffect(() => {
@@ -165,7 +167,7 @@ function App() {
                       </Button>
                       <Button
                         onClick={() => {
-                          setSelectedComic(comic);
+                          setComicsDetail(comic);
                         }}
                         size="small"
                         color="primary"
@@ -200,12 +202,12 @@ function App() {
         scroll="paper"
         maxWidth="lg"
         onClose={() => {
-          setSelectedComic(undefined);
+          setComicsDetail(undefined);
         }}
-        open={!!selectedComic}
+        open={!!comicsDetail}
       >
         <DialogContent>
-          {selectedComic && (
+          {comicsDetail && (
             <main
               style={{
                 display: "flex",
@@ -215,14 +217,14 @@ function App() {
             >
               <header style={{ flex: 1 }}>
                 <img
-                  src={getUrlImage(selectedComic, "portrait_xlarge")}
+                  src={getUrlImage(comicsDetail, "portrait_xlarge")}
                   className="App-logo"
                   alt="logo"
                 />
               </header>
               <article style={{ flex: 4 }}>
                 <section>
-                  <Typography variant="h6">{selectedComic.title}</Typography>
+                  <Typography variant="h6">{comicsDetail.title}</Typography>
                 </section>
               </article>
             </main>
@@ -232,7 +234,7 @@ function App() {
           <Button
             color="error"
             onClick={() => {
-              setSelectedComic(undefined);
+              setComicsDetail(undefined);
             }}
           >
             Fechar
