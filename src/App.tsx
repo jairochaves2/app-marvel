@@ -39,7 +39,6 @@ function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
 }
 function App() {
-  
   const { comics, setComics } = useComicList();
   const { comicsDetail, setComicsDetail } = useComicDetail();
   const { comicsSelect, setComicsSelect } = useSelectedComics();
@@ -63,7 +62,6 @@ function App() {
       });
   }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
-    console.log("searchText", searchText);
     if (searchText) {
       MarvelApi.getComicsByTitle(searchText, page).then((res) => {
         const data: Data = res.data;
