@@ -8,10 +8,10 @@ export default function ComicCover() {
   return (
     <figure
       style={{
-        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "black",
       }}
     >
       <img
