@@ -25,10 +25,11 @@ import {
 import { Data, Result } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
 import "./App.css";
-import SelectedContext from "./contexts/SelectionComics.context";
+import SelectedContext from "./contexts/comics/SelectionComics.context";
 import { lightBlue } from "@mui/material/colors";
 import { LocationOn } from "@mui/icons-material";
 import { usePage } from "./contexts/PageSelect.context";
+import { useTotalComics } from "./contexts/comics/TotalComics.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
@@ -37,12 +38,12 @@ function App() {
   const [comics, setComics] = React.useState<Result[]>();
   const [selectedComic, setSelectedComic] = React.useState<Result>();
   const [searchText, setSearchText] = React.useState<string>("");
-  const [totalComics, setTotalComics] = React.useState(0);
-  
+
   const [loading, setLoading] = React.useState(true);
-  
+
   const { comicsSelect, setComicsSelect } = React.useContext(SelectedContext);
   const { page, setPage } = usePage();
+  const { totalComics, setTotalComics } = useTotalComics();
 
   React.useEffect(() => {
     setLoading(true);
@@ -65,7 +66,7 @@ function App() {
         setComics(data.results);
       });
     }
-  }, [searchText, page]);
+  }, [searchText, page]);  // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="App">
       <header className="">

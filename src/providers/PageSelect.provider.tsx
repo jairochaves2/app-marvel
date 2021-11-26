@@ -3,7 +3,7 @@ import PageSelectContext from "../contexts/PageSelect.context";
 
 const PageSelectProvider: React.FC = ({ children }) => {
   const [page, setPageState] = React.useState<number>(1);
-  const setPage = (page: any) => {
+  const setPage = (page: number) => {
     setPageState(page);
   };
 

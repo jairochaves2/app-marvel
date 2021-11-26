@@ -1,10 +1,10 @@
 import React from "react";
-import SelectedContext from "../contexts/SelectionComics.context";
+import SelectedContext from "../contexts/comics/SelectionComics.context";
 import ComicSelect from "../interfaces/contexts/ComicSelection.interface";
 
 const SelectionProvider: React.FC = ({ children }) => {
   const [comicsSelect, setSelectedComics] = React.useState<ComicSelect[]>([]);
-  const toggleComics = (comic: any) => {
+  const toggleComics = (comic: ComicSelect) => {
     const data = comicsSelect;
     const index = data.findIndex((c) => c.id === comic.id);
     if (index === -1) {

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ComicSelectionContextType } from "../interfaces/contexts/ComicSelection.interface";
+import { ComicSelectionContextType } from "../../interfaces/contexts/ComicSelection.interface";
 
 const SelectionContext = createContext<ComicSelectionContextType>({
   comicsSelect: [],

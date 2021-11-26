@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import SelectionProvider from "./providers/ComicSelection.provider";
 import PageProvider from "./providers/PageSelect.provider";
+import TotalComicsProvider from "./providers/TotalComics.provider";
 
 ReactDOM.render(
   <React.StrictMode>
     <SelectionProvider>
-      <PageProvider>
-        <App />
-      </PageProvider>
+      <TotalComicsProvider>
+        <PageProvider>
+          <App />
+        </PageProvider>
+      </TotalComicsProvider>
     </SelectionProvider>
   </React.StrictMode>,
   document.getElementById("root")
