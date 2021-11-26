@@ -25,7 +25,7 @@ import {
 import { Data, Result } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
 import "./App.css";
-import SelectedContext from "./contexts/comics/SelectionComics.context";
+import { useSelectedComics } from "./contexts/comics/SelectionComics.context";
 import { lightBlue } from "@mui/material/colors";
 import { LocationOn } from "@mui/icons-material";
 import { usePage } from "./contexts/PageSelect.context";
@@ -41,7 +41,7 @@ function App() {
 
   const [loading, setLoading] = React.useState(true);
 
-  const { comicsSelect, setComicsSelect } = React.useContext(SelectedContext);
+  const { comicsSelect, setComicsSelect } = useSelectedComics();
   const { page, setPage } = usePage();
   const { totalComics, setTotalComics } = useTotalComics();
 
@@ -66,7 +66,7 @@ function App() {
         setComics(data.results);
       });
     }
-  }, [searchText, page]);  // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchText, page]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="App">
       <header className="">
