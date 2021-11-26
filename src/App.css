@@ -8,5 +8,12 @@
 }
 body {
   height: 100vh;
-  /* background-color: brown; */
+  background-color: rgb(212, 80, 80);
+}
+
+.App-footer {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
 }
