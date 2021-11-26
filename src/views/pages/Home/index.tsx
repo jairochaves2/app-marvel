@@ -20,17 +20,19 @@ export default function Home() {
   const { searchText } = useSearchText();
 
   React.useEffect(() => {
-    setLoading(true);
-    MarvelApiService.getComics(page)
-      .then((res) => {
-        const data: Data = res.data;
+    if (!searchText) {
+      setLoading(true);
+      MarvelApiService.getComics(page)
+        .then((res) => {
+          const data: Data = res.data;
 
-        setTotalComics(data.total);
-        setComics(data.results);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+          setTotalComics(data.total);
+          setComics(data.results);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect(() => {
