@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ComicToDetailContextType } from "../../interfaces/contexts/ComicToDetail.interface";
+import { ComicToDetailContextType } from "../../interfaces/contexts/comics/ComicToDetail.interface";
 
 const ComicToDetailContext = createContext<ComicToDetailContextType>({
   comicsDetail: undefined,

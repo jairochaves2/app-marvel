@@ -1,4 +1,4 @@
-import { Result } from "../MarvelApi.interface";
+import { Result } from "../../MarvelApi.interface";
 
 export interface ComicToDetailContextType {
   comicsDetail: Result | undefined;

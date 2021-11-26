@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ComicListContextType } from "../../interfaces/contexts/ComicList.interface";
+import { ComicListContextType } from "../../interfaces/contexts/comics/ComicList.interface";
 
 const ComicListContext = createContext<ComicListContextType>({
   comics: undefined,

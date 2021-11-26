@@ -3,7 +3,7 @@ import { Result } from "../interfaces/MarvelApi.interface";
 import { HashMarvel } from "../interfaces/Hash.interface";
 import { ImagesVariants } from "../types/ImagesVariants.type";
 import { ITEMS_PER_PAGE } from "../services/MarvelApi.service";
-import ComicSelect from "../interfaces/contexts/ComicSelection.interface";
+import ComicSelect from "../interfaces/contexts/comics/ComicSelection.interface";
 
 /**
  *

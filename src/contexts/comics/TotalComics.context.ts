@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { TotalComicsContextType } from "../../interfaces/contexts/TotalComics.interface";
+import { TotalComicsContextType } from "../../interfaces/contexts/comics/TotalComics.interface";
 
 const TotalComicsContext = createContext<TotalComicsContextType>({
   totalComics: 0,
