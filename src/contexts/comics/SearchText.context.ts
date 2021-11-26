@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
 import { SearchContextType } from "../../interfaces/contexts/SearchText.interface";
 
-const TotalComicsContext = createContext<SearchContextType>({
+const SearchTextContext = createContext<SearchContextType>({
   searchText: "",
   setSearchText: () => {},
 });
 
-export function useTotalComics(): SearchContextType {
-  return useContext(TotalComicsContext);
+export function useSearchText(): SearchContextType {
+  return useContext(SearchTextContext);
 }
 
-export default TotalComicsContext;
+export default SearchTextContext;

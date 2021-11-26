@@ -30,6 +30,7 @@ import { lightBlue } from "@mui/material/colors";
 import { LocationOn } from "@mui/icons-material";
 import { usePage } from "./contexts/PageSelect.context";
 import { useTotalComics } from "./contexts/comics/TotalComics.context";
+import { useSearchText } from "./contexts/comics/SearchText.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
@@ -37,13 +38,13 @@ function Loading() {
 function App() {
   const [comics, setComics] = React.useState<Result[]>();
   const [selectedComic, setSelectedComic] = React.useState<Result>();
-  const [searchText, setSearchText] = React.useState<string>("");
 
   const [loading, setLoading] = React.useState(true);
 
   const { comicsSelect, setComicsSelect } = useSelectedComics();
   const { page, setPage } = usePage();
   const { totalComics, setTotalComics } = useTotalComics();
+  const { searchText, setSearchText } = useSearchText();
 
   React.useEffect(() => {
     setLoading(true);
@@ -59,6 +60,7 @@ function App() {
       });
   }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
+    console.log("searchText", searchText);
     if (searchText) {
       MarvelApi.getComicsByTitle(searchText, page).then((res) => {
         const data: Data = res.data;

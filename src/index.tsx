@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import SelectionProvider from "./providers/comics/ComicSelection.provider";
 import PageProvider from "./providers/PageSelect.provider";
 import TotalComicsProvider from "./providers/comics/TotalComics.provider";
+import SearchTextProvider from "./providers/comics/SearchText.provider";
 
 ReactDOM.render(
   <React.StrictMode>
     <SelectionProvider>
       <TotalComicsProvider>
         <PageProvider>
-          <App />
+          <SearchTextProvider>
+            <App />
+          </SearchTextProvider>
         </PageProvider>
       </TotalComicsProvider>
     </SelectionProvider>

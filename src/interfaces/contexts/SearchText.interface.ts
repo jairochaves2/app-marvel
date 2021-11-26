@@ -1,4 +1,4 @@
 export interface SearchContextType {
   searchText: string;
-  setSearchText: (text: number) => void;
+  setSearchText: (text: string) => void;
 }
