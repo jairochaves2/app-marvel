@@ -17,13 +17,18 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { getQuantidadePaginas, getUrlImage, hasComicInArray } from "./helpers/MarvelApi.helper";
+import {
+  getQuantidadePaginas,
+  getUrlImage,
+  hasComicInArray,
+} from "./helpers/MarvelApi.helper";
 import { Data, Result } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
 import "./App.css";
 import SelectedContext from "./contexts/SelectionComics.context";
 import { lightBlue } from "@mui/material/colors";
 import { LocationOn } from "@mui/icons-material";
+import { usePage } from "./contexts/PageSelect.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
@@ -32,12 +37,12 @@ function App() {
   const [comics, setComics] = React.useState<Result[]>();
   const [selectedComic, setSelectedComic] = React.useState<Result>();
   const [searchText, setSearchText] = React.useState<string>("");
-  const [page, setPage] = React.useState(1);
   const [totalComics, setTotalComics] = React.useState(0);
-
+  
   const [loading, setLoading] = React.useState(true);
-
+  
   const { comicsSelect, setComicsSelect } = React.useContext(SelectedContext);
+  const { page, setPage } = usePage();
 
   React.useEffect(() => {
     setLoading(true);

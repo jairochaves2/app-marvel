@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import SelectionProvider from "./providers/ComicSelection.provider";
+import PageProvider from "./providers/PageSelect.provider";
 
 ReactDOM.render(
   <React.StrictMode>
     <SelectionProvider>
-      <App />
+      <PageProvider>
+        <App />
+      </PageProvider>
     </SelectionProvider>
   </React.StrictMode>,
   document.getElementById("root")
