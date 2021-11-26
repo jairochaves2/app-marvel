@@ -16,7 +16,7 @@ import {
   Input,
   Pagination,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 import "./App.css";
@@ -29,21 +29,22 @@ import { usePage } from "./contexts/PageSelect.context";
 import {
   getQuantidadePaginas,
   getUrlImage,
-  hasComicInArray
+  hasComicInArray,
 } from "./helpers/MarvelApi.helper";
-import { Data, Result } from "./interfaces/MarvelApi.interface";
+import { Data } from "./interfaces/MarvelApi.interface";
 import MarvelApi from "./services/MarvelApi.service";
+import { useComicList } from "./contexts/comics/ComicList.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
 }
 function App() {
-  const [comics, setComics] = React.useState<Result[]>();
-
-  const { comicsSelect, setComicsSelect } = useSelectedComics();
-  const { totalComics, setTotalComics } = useTotalComics();
+  
+  const { comics, setComics } = useComicList();
   const { comicsDetail, setComicsDetail } = useComicDetail();
+  const { comicsSelect, setComicsSelect } = useSelectedComics();
   const { searchText, setSearchText } = useSearchText();
+  const { totalComics, setTotalComics } = useTotalComics();
 
   const { page, setPage } = usePage();
   const { loading, setLoading } = useLoading();
