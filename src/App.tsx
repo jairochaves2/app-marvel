@@ -1,4 +1,5 @@
 import React from "react";
+import { LocationOn } from "@mui/icons-material";
 import {
   AppBar,
   Button,
@@ -11,32 +12,50 @@ import {
   DialogActions,
   DialogContent,
   Grid,
+  Hidden,
   Input,
+  Pagination,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { getUrlImage } from "./helpers";
-import { Data, Result } from "./interfaces/marvel";
-import MarvelApi from "./services/marvelApi";
+import { lightBlue } from "@mui/material/colors";
 import "./App.css";
-import SelectedContext from "./contexts/SelectedsComicsContext";
+import { useComicDetail } from "./contexts/comics/ComicToDetail.context";
+import { useSearchText } from "./contexts/comics/SearchText.context";
+import { useSelectedComics } from "./contexts/comics/SelectionComics.context";
+import { useTotalComics } from "./contexts/comics/TotalComics.context";
+import { useLoading } from "./contexts/Loading.context";
+import { usePage } from "./contexts/PageSelect.context";
+import {
+  getQuantidadePaginas,
+  getUrlImage,
+  hasComicInArray,
+} from "./helpers/MarvelApi.helper";
+import { Data } from "./interfaces/MarvelApi.interface";
+import MarvelApi from "./services/MarvelApi.service";
+import { useComicList } from "./contexts/comics/ComicList.context";
 
 function Loading() {
-  return <div>{/* <img src="/loading.gif" /> */}</div>;
+  return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
 }
 function App() {
-  const [comics, setComics] = React.useState<Result[]>();
-  const [selectedComic, setSelectedComic] = React.useState<Result>();
-  const [searchText, setSearchText] = React.useState<string>("");
-  const [page, setPage] = React.useState(0);
-  const [loading, setLoading] = React.useState(true);
-  const { comicsSelect, setComicsSelect } = React.useContext(SelectedContext);
+  
+  const { comics, setComics } = useComicList();
+  const { comicsDetail, setComicsDetail } = useComicDetail();
+  const { comicsSelect, setComicsSelect } = useSelectedComics();
+  const { searchText, setSearchText } = useSearchText();
+  const { totalComics, setTotalComics } = useTotalComics();
+
+  const { page, setPage } = usePage();
+  const { loading, setLoading } = useLoading();
 
   React.useEffect(() => {
     setLoading(true);
     MarvelApi.getComics(page)
       .then((res) => {
         const data: Data = res.data;
+
+        setTotalComics(data.total);
         setComics(data.results);
       })
       .finally(() => {
@@ -44,37 +63,57 @@ function App() {
       });
   }, [searchText.length === 0, page]); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
+    console.log("searchText", searchText);
     if (searchText) {
       MarvelApi.getComicsByTitle(searchText, page).then((res) => {
         const data: Data = res.data;
+        setTotalComics(data.total);
         setComics(data.results);
       });
     }
-  }, [searchText, page]);
+  }, [searchText, page]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="App">
       <header className="">
-        {comicsSelect.map((a) => a.title)}
         <AppBar position="relative" sx={{ mb: 1 }}>
-          {/* <Toolbar
+          <Toolbar
             sx={{
               display: "flex",
-              justifyContent: "center",
-              bgcolor: "primary.black",
+              justifyContent: "space-evenly",
+              bgcolor: "#dddddd",
             }}
           >
-            <Grid item xs={12} md={6} lg={4}>
-              <Input
-                disableUnderline
-                sx={{ bgcolor: "white", p: 1, borderRadius: "10px" }}
-                placeholder="Buscar"
-                fullWidth
-                onChange={(event) => {
-                  setSearchText(event.target.value);
-                }}
-              />
+            <Grid
+              container
+              spacing={1}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Grid item xs={7} sm={9} md={6} lg={4}>
+                <Input
+                  disableUnderline
+                  sx={{ bgcolor: "white", p: 1, borderRadius: "10px" }}
+                  placeholder="Buscar"
+                  fullWidth
+                  onChange={(event) => {
+                    setSearchText(event.target.value);
+                  }}
+                />
+              </Grid>
+              <Hidden xsUp={comicsSelect.length <= 0}>
+                <Grid item xs={5} sm={3} md={2}>
+                  <Button
+                    startIcon={<LocationOn />}
+                    fullWidth
+                    color="info"
+                    variant="outlined"
+                  >
+                    Envie-me
+                  </Button>
+                </Grid>
+              </Hidden>
             </Grid>
-          </Toolbar> */}
+          </Toolbar>
         </AppBar>
       </header>
       <main className={loading ? "App-Center" : ""}>
@@ -86,38 +125,56 @@ function App() {
               {comics?.map((comic) => (
                 <Grid item xs={12} sm={6} md={3}>
                   <Card>
-                    {/* <CardMedia
+                    <CardMedia
                       component="img"
                       height="140"
                       image={getUrlImage(comic)}
                       alt={comic.title}
-                    /> */}
-                    <CardContent>
-                      {/* <Typography variant="h6">
+                    />
+                    <CardContent
+                      sx={{
+                        bgcolor: hasComicInArray(comicsSelect, comic.id)
+                          ? lightBlue[100]
+                          : "white",
+                      }}
+                    >
+                      <Typography variant="h6">
                         {comic.title.length > 20
                           ? `${comic.title.substring(0, 20)}...`
                           : comic.title}
-                      </Typography> */}
+                      </Typography>
                     </CardContent>
-                    <CardActions disableSpacing={true}>
+                    <CardActions
+                      sx={{
+                        bgcolor: hasComicInArray(comicsSelect, comic.id)
+                          ? lightBlue[100]
+                          : "white",
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                      disableSpacing={true}
+                    >
                       <Button
                         onClick={() => {
                           setComicsSelect({ id: comic.id, title: comic.title });
                         }}
                         size="small"
-                        color="secondary"
+                        color="success"
+                        variant="outlined"
                       >
-                        Selecionar
+                        {hasComicInArray(comicsSelect, comic.id)
+                          ? "Remover"
+                          : "Adicionar"}
                       </Button>
-                      {/* <Button
+                      <Button
                         onClick={() => {
-                          setSelectedComic(comic);
+                          setComicsDetail(comic);
                         }}
                         size="small"
                         color="primary"
                       >
                         Detalhes
-                      </Button> */}
+                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -126,18 +183,32 @@ function App() {
           </Container>
         )}
       </main>
-      <footer className="App-footer"></footer>
+      {!loading && (
+        <footer className="App-footer">
+          <Pagination
+            sx={{ bgcolor: "white", p: 1, borderRadius: "10px" }}
+            count={getQuantidadePaginas(totalComics)}
+            color="standard"
+            variant="outlined"
+            page={page}
+            onChange={(_, value) => {
+              setPage(value);
+            }}
+          />
+        </footer>
+      )}
+
       <Dialog
         fullWidth
         scroll="paper"
         maxWidth="lg"
         onClose={() => {
-          setSelectedComic(undefined);
+          setComicsDetail(undefined);
         }}
-        open={!!selectedComic}
+        open={!!comicsDetail}
       >
         <DialogContent>
-          {selectedComic && (
+          {comicsDetail && (
             <main
               style={{
                 display: "flex",
@@ -147,14 +218,14 @@ function App() {
             >
               <header style={{ flex: 1 }}>
                 <img
-                  src={getUrlImage(selectedComic, "portrait_xlarge")}
+                  src={getUrlImage(comicsDetail, "portrait_xlarge")}
                   className="App-logo"
                   alt="logo"
                 />
               </header>
               <article style={{ flex: 4 }}>
                 <section>
-                  <Typography variant="h6">{selectedComic.title}</Typography>
+                  <Typography variant="h6">{comicsDetail.title}</Typography>
                 </section>
               </article>
             </main>
@@ -164,7 +235,7 @@ function App() {
           <Button
             color="error"
             onClick={() => {
-              setSelectedComic(undefined);
+              setComicsDetail(undefined);
             }}
           >
             Fechar

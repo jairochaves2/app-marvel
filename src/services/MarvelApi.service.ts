@@ -1,11 +1,11 @@
 import axios from "axios";
-import { getHashTsApiKey, getOffset } from "../../helpers";
-import { RootObject } from "../../interfaces/marvel";
+import { getHashTsApiKey, getOffset } from "../helpers/MarvelApi.helper";
+import { RootObject } from "../interfaces/MarvelApi.interface";
 
 const api = axios.create({
   baseURL: "https://gateway.marvel.com/v1/public/",
 });
-const ITEMS_PER_PAGE = 12;
+export const ITEMS_PER_PAGE = 12;
 
 export default class MarvelApi {
   public static async getComics(page: number): Promise<any> {

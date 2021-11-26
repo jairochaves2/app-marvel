@@ -3,13 +3,31 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import SelectionProvider from "./providers/ComicSelectionProvider";
+import SelectionProvider from "./providers/comics/ComicSelection.provider";
+import PageProvider from "./providers/PageSelect.provider";
+import TotalComicsProvider from "./providers/comics/TotalComics.provider";
+import SearchTextProvider from "./providers/comics/SearchText.provider";
+import LoadingProvider from "./providers/Loading.provider";
+import ComicToDetailProvider from "./providers/comics/ComicToDetail.provider";
+import ComicListProvider from "./providers/comics/ComicList.provider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <SelectionProvider>
-      <App />
-    </SelectionProvider>
+    <ComicListProvider>
+      <SelectionProvider>
+        <TotalComicsProvider>
+          <PageProvider>
+            <SearchTextProvider>
+              <LoadingProvider>
+                <ComicToDetailProvider>
+                  <App />
+                </ComicToDetailProvider>
+              </LoadingProvider>
+            </SearchTextProvider>
+          </PageProvider>
+        </TotalComicsProvider>
+      </SelectionProvider>
+    </ComicListProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
