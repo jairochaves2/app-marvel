@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import SelectionProvider from "./providers/comics/ComicSelection.provider";
 import PageProvider from "./providers/PageSelect.provider";
@@ -11,6 +10,7 @@ import LoadingProvider from "./providers/Loading.provider";
 import ComicToDetailProvider from "./providers/comics/ComicToDetail.provider";
 import ComicListProvider from "./providers/comics/ComicList.provider";
 import RouteProvider from "./routes";
+import "./App.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,9 +21,7 @@ ReactDOM.render(
             <SearchTextProvider>
               <LoadingProvider>
                 <ComicToDetailProvider>
-                  <RouteProvider>
-                    <App />
-                  </RouteProvider>
+                  <RouteProvider />
                 </ComicToDetailProvider>
               </LoadingProvider>
             </SearchTextProvider>
