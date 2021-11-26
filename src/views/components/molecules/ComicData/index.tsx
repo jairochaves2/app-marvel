@@ -68,7 +68,6 @@ export default function ComicData() {
               </Grid>
             ))}
         </Grid>
-        {/* </List> */}
       </section>
     </article>
   );
