@@ -17,11 +17,11 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { getQuantidadePaginas, getUrlImage, hasComicInArray } from "./helpers";
-import { Data, Result } from "./interfaces/marvel";
-import MarvelApi from "./services/marvelApi";
+import { getQuantidadePaginas, getUrlImage, hasComicInArray } from "./helpers/MarvelApi.helper";
+import { Data, Result } from "./interfaces/MarvelApi.interface";
+import MarvelApi from "./services/MarvelApi.service";
 import "./App.css";
-import SelectedContext from "./contexts/SelectedsComicsContext";
+import SelectedContext from "./contexts/SelectionComics.context";
 import { lightBlue } from "@mui/material/colors";
 import { LocationOn } from "@mui/icons-material";
 

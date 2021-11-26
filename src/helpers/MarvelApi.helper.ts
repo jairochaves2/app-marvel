@@ -1,9 +1,9 @@
 import md5 from "md5";
-import { Result } from "../interfaces/marvel";
-import { HashMarvel } from "../interfaces/hash";
-import { ImagesVariants } from "../types";
-import { ITEMS_PER_PAGE } from "../services/marvelApi";
-import ComicSelect from "../interfaces/ComicSelect";
+import { Result } from "../interfaces/MarvelApi.interface";
+import { HashMarvel } from "../interfaces/Hash.interface";
+import { ImagesVariants } from "../types/ImagesVariants.type";
+import { ITEMS_PER_PAGE } from "../services/MarvelApi.service";
+import ComicSelect from "../interfaces/ComicSelect.interface";
 
 /**
  *
