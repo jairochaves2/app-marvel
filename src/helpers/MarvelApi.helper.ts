@@ -60,5 +60,6 @@ export function getQuantidadePaginas(totalItems: number): number {
  * @returns se o quadrinho existe na lista retorna true, caso contrário retorna false
  */
 export function hasComicInArray(comics: ComicSelect[], id: number): boolean {
+  if (id === -1) return false;
   return comics.some((someComic) => someComic.id === id);
 }
