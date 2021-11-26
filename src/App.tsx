@@ -31,6 +31,7 @@ import { LocationOn } from "@mui/icons-material";
 import { usePage } from "./contexts/PageSelect.context";
 import { useTotalComics } from "./contexts/comics/TotalComics.context";
 import { useSearchText } from "./contexts/comics/SearchText.context";
+import { useLoading } from "./contexts/Loading.context";
 
 function Loading() {
   return <div>{<img src="/loading.gif" alt="Loading" />}</div>;
@@ -39,12 +40,11 @@ function App() {
   const [comics, setComics] = React.useState<Result[]>();
   const [selectedComic, setSelectedComic] = React.useState<Result>();
 
-  const [loading, setLoading] = React.useState(true);
-
   const { comicsSelect, setComicsSelect } = useSelectedComics();
   const { page, setPage } = usePage();
   const { totalComics, setTotalComics } = useTotalComics();
   const { searchText, setSearchText } = useSearchText();
+  const { loading, setLoading } = useLoading();
 
   React.useEffect(() => {
     setLoading(true);

@@ -7,6 +7,7 @@ import SelectionProvider from "./providers/comics/ComicSelection.provider";
 import PageProvider from "./providers/PageSelect.provider";
 import TotalComicsProvider from "./providers/comics/TotalComics.provider";
 import SearchTextProvider from "./providers/comics/SearchText.provider";
+import LoadingProvider from "./providers/Loading.provider";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <TotalComicsProvider>
         <PageProvider>
           <SearchTextProvider>
-            <App />
+            <LoadingProvider>
+              <App />
+            </LoadingProvider>
           </SearchTextProvider>
         </PageProvider>
       </TotalComicsProvider>
