@@ -5,7 +5,7 @@ import { RootObject } from "../../interfaces/marvel";
 const api = axios.create({
   baseURL: "https://gateway.marvel.com/v1/public/",
 });
-const ITEMS_PER_PAGE = 12;
+export const ITEMS_PER_PAGE = 12;
 
 export default class MarvelApi {
   public static async getComics(page: number): Promise<any> {
