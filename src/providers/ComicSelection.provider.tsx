@@ -1,6 +1,6 @@
 import React from "react";
 import SelectedContext from "../contexts/SelectionComics.context";
-import ComicSelect from "../interfaces/ComicSelect.interface";
+import ComicSelect from "../interfaces/contexts/ComicSelection.interface";
 
 const SelectionProvider: React.FC = ({ children }) => {
   const [comicsSelect, setSelectedComics] = React.useState<ComicSelect[]>([]);
