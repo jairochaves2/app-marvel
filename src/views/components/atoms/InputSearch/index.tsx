@@ -1,6 +1,6 @@
 import { Input } from "@mui/material";
 import React from "react";
-import { useSearchText } from "../../../../contexts/comics/SearchText.context";
+import { useSearchText } from "../../../../hooks/contexts.hooks";
 
 const InputSearch: React.FC = () => {
   const { setSearchText } = useSearchText();
