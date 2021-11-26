@@ -6,7 +6,6 @@ import {
 } from "@mui/icons-material";
 import {
   Grid,
-  List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
