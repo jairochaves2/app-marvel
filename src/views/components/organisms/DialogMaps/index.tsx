@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog } from "@mui/material";
+import { Dialog, DialogTitle } from "@mui/material";
 import { useAddress } from "../../../../hooks/contexts.hooks";
 import GoogleMapComics from "../../atoms/GoogleMapComics";
 import InputAddress from "../../atoms/InputAddress";
@@ -18,6 +18,7 @@ export default function DialogMaps() {
       scroll="body"
       onClose={toggleOpenDialogAddress}
     >
+      <DialogTitle>Escolha o local de entrega</DialogTitle>
       <GoogleMapComics />
       <InputAddress />
 

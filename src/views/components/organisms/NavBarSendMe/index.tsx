@@ -6,11 +6,7 @@ import AppBarComic from "../../molecules/AppBarComic";
 export default function NavbarSendMe() {
   return (
     <AppBarComic>
-      <Typography
-        variant="h5"
-        color="primary"
-        sx={{ bgcolor: "white", p: 1.5, borderRadius: "8px" }}
-      >
+      <Typography variant="h5" color="primary">
         QUADRINHOS SELECIONADOS
       </Typography>
       <DefineAddressButton />
