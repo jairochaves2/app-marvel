@@ -31,7 +31,7 @@ export default function GoogleMapComics() {
     <GoogleMap
       mapContainerStyle={{
         width: "100%",
-        height: "600px",
+        height: "400px",
       }}
       center={location}
       zoom={12}
