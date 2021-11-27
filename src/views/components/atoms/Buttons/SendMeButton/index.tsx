@@ -15,11 +15,6 @@ const SendMeButton: React.FC = () => {
             fullWidth
             color="info"
             variant="outlined"
-            onClick={() => {
-              navigator.geolocation.getCurrentPosition((location) => {
-                console.log(location.coords);
-              });
-            }}
           >
             Envie-me
           </Button>
