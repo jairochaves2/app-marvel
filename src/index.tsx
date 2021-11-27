@@ -11,6 +11,7 @@ import ComicToDetailProvider from "./providers/comics/ComicToDetail.provider";
 import ComicListProvider from "./providers/comics/ComicList.provider";
 import RouteProvider from "./routes";
 import "./App.css";
+import AddressProvider from "./providers/address/Address.provider";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +22,9 @@ ReactDOM.render(
             <SearchTextProvider>
               <LoadingProvider>
                 <ComicToDetailProvider>
-                  <RouteProvider />
+                  <AddressProvider>
+                    <RouteProvider />
+                  </AddressProvider>
                 </ComicToDetailProvider>
               </LoadingProvider>
             </SearchTextProvider>
