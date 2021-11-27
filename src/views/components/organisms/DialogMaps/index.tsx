@@ -14,6 +14,7 @@ import {
   useSelectedComics,
 } from "../../../../hooks/contexts.hooks";
 import GoogleMapComics from "../../atoms/GoogleMapComics";
+import InputAddress from "../../atoms/InputAddress";
 
 export default function DialogMaps() {
   const [openSnack, setOpenSnack] = React.useState(false);
@@ -31,20 +32,7 @@ export default function DialogMaps() {
       onClose={toggleOpenDialogAddress}
     >
       <GoogleMapComics />
-      {address && (
-        <div style={{ paddingTop: 8, paddingLeft: 8, paddingRight: 8 }}>
-          <TextField
-            label="Edereço"
-            defaultValue="Hello World"
-            placeholder="Buscar"
-            fullWidth
-            value={address}
-            onChange={(event) => {
-              setAddress(event.target.value);
-            }}
-          />
-        </div>
-      )}
+      <InputAddress />
 
       <DialogActions>
         <Button
