@@ -30,7 +30,7 @@ export default function Main() {
         <Container>
           <Grid container spacing={2}>
             {comicsUse?.map((comic) => (
-              <CardComic comic={comic} />
+              <CardComic key={comic.id} comic={comic} />
             ))}
           </Grid>
         </Container>

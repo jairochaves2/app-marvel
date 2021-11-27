@@ -7,5 +7,5 @@ import { Result } from "../../MarvelApi.interface";
 
 export interface ComicSelectionContextType {
   comicsSelect: Result[];
-  setComicsSelect: (comic: Result) => void;
+  setComicsSelect: (comic: Result | undefined) => void;
 }

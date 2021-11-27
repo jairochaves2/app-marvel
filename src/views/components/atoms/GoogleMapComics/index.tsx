@@ -30,8 +30,8 @@ export default function GoogleMapComics() {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={{
-        flex: 1,
-        flexGrow: 1,
+        width: "100%",
+        height: "600px",
       }}
       center={location}
       zoom={12}
@@ -39,8 +39,8 @@ export default function GoogleMapComics() {
         const data = event.latLng?.toJSON();
         if (data) {
           geocode
-            .getAddress(data.lat.toString(), data.lng.toString())
-            .then((geoAddress) => {
+          .getAddress(data.lat.toString(), data.lng.toString())
+          .then((geoAddress) => {
               setLocationMark({ lat: data.lat, lng: data.lng });
               setAddress(geoAddress);
             });
