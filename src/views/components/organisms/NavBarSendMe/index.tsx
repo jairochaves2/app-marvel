@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import FinalizeOrderButton from "../../atoms/Buttons/FinalizeOrderButton";
+import DefineAddressButton from "../../atoms/Buttons/DefineAddressButton";
 import AppBarComic from "../../molecules/AppBarComic";
 
 export default function NavbarSendMe() {
@@ -13,7 +13,7 @@ export default function NavbarSendMe() {
       >
         QUADRINHOS SELECIONADOS
       </Typography>
-      <FinalizeOrderButton />
+      <DefineAddressButton />
     </AppBarComic>
   );
 }
