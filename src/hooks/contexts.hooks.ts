@@ -1,3 +1,4 @@
+import { AddressContextType } from './../interfaces/contexts/address/Address.interface';
 import { useContext } from "react";
 import ComicListContext from "../contexts/comics/ComicList.context";
 import ComicToDetailContext from "../contexts/comics/ComicToDetail.context";
@@ -13,6 +14,7 @@ import { TotalComicsContextType } from "../interfaces/contexts/comics/TotalComic
 import { PageSelectContextType } from "../interfaces/contexts/PageSelect.interface";
 import { SearchContextType } from "../interfaces/contexts/SearchText.interface";
 import { LoadingContextType } from "../interfaces/Loading.interface";
+import AddressContext from '../contexts/address/Address.context';
 
 export function useLoading(): LoadingContextType {
   return useContext(LoadingContext);
@@ -34,4 +36,7 @@ export function useSelectedComics(): ComicSelectionContextType {
 }
 export function useTotalComics(): TotalComicsContextType {
   return useContext(TotalComicsContext);
+}
+export function useAddress(): AddressContextType {
+  return useContext(AddressContext);
 }

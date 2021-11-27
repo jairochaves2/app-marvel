@@ -1,12 +1,15 @@
 import React from "react";
 import SelectedContext from "../../contexts/comics/SelectionComics.context";
-import ComicSelect from "../../interfaces/contexts/comics/ComicSelection.interface";
+import { Result } from "../../interfaces/MarvelApi.interface";
 
 const SelectionProvider: React.FC = ({ children }) => {
-  const [comicsSelect, setSelectedComics] = React.useState<ComicSelect[]>([]);
-  const toggleComics = (comic: ComicSelect) => {
+  const [comicsSelect, setSelectedComics] = React.useState<Result[]>([]);
+  const toggleComics = (comic: Result | undefined) => {
+    if (!comic) {
+      return setSelectedComics([]);
+    }
     const data = comicsSelect;
-    const index = data.findIndex((c) => c.id === comic.id);
+    const index = data.findIndex((c) => c.id === comic?.id);
     if (index === -1) {
       setSelectedComics([...data, comic]);
     } else {

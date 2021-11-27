@@ -3,7 +3,6 @@ import { Result } from "../interfaces/MarvelApi.interface";
 import { HashMarvel } from "../interfaces/Hash.interface";
 import { ImagesVariants } from "../types/ImagesVariants.type";
 import { ITEMS_PER_PAGE } from "../services/MarvelApi.service";
-import ComicSelect from "../interfaces/contexts/comics/ComicSelection.interface";
 
 /**
  *
@@ -12,9 +11,12 @@ import ComicSelect from "../interfaces/contexts/comics/ComicSelection.interface"
  * @returns Retorna a url da imagem baseado no comic thumbnail path e extension
  */
 export function getUrlImage(
-  comic: Result,
+  comic: Result | undefined,
   type: ImagesVariants = "standard_fantastic"
 ): string {
+  if (!comic) {
+    return "";
+  }
   return `${comic.thumbnail.path}/${type}.${comic.thumbnail.extension}`;
 }
 
@@ -59,6 +61,10 @@ export function getQuantidadePaginas(totalItems: number): number {
  * @param id id do quadrinho que se quer buscar
  * @returns se o quadrinho existe na lista retorna true, caso contrário retorna false
  */
-export function hasComicInArray(comics: ComicSelect[], id: number): boolean {
+export function hasComicInArray(comics: Result[], id: number): boolean {
+  if (id === -1) return false;
   return comics.some((someComic) => someComic.id === id);
+}
+export function isSendMePage(pathname: string): boolean {
+  return pathname === "/send-me";
 }

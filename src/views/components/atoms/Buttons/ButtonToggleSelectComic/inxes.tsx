@@ -5,21 +5,24 @@ import { useSelectedComics } from "../../../../../hooks/contexts.hooks";
 import { Result } from "../../../../../interfaces/MarvelApi.interface";
 
 interface Props {
-  comic: Result;
+  comic: Result | undefined;
 }
 
 export default function ButtonToggleSelectComic({ comic }: Props) {
   const { comicsSelect, setComicsSelect } = useSelectedComics();
+  const hasComic = hasComicInArray(comicsSelect, comic?.id ? comic.id : -1);
   return (
     <Button
       onClick={() => {
-        setComicsSelect({ id: comic.id, title: comic.title });
+        if (comic) {
+          setComicsSelect(comic);
+        }
       }}
       size="small"
-      color="success"
-      variant="outlined"
+      color={hasComic?"warning":"success"}
+      variant={hasComic?"outlined":"contained"}
     >
-      {hasComicInArray(comicsSelect, comic.id) ? "Remover" : "Adicionar"}
+      {hasComic ? "Remover" : "Adicionar"}
     </Button>
   );
 }

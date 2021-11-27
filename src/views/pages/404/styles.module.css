@@ -1,0 +1,15 @@
+.Page404_image {
+  width: 25rem;
+}
+.Page404_root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.Page404_link {
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}

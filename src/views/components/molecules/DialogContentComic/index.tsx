@@ -1,7 +1,8 @@
-import { DialogContent, Typography } from "@mui/material";
+import { DialogContent, Grid } from "@mui/material";
 import React from "react";
-import { getUrlImage } from "../../../../helpers/MarvelApi.helper";
 import { useComicDetail } from "../../../../hooks/contexts.hooks";
+import ComicCover from "../../atoms/ComicCover";
+import ComicData from "../ComicData";
 
 export default function DialogContentComic() {
   const { comicsDetail } = useComicDetail();
@@ -13,21 +14,17 @@ export default function DialogContentComic() {
           style={{
             display: "flex",
             alignItems: "center",
-            flexDirection: "column",
+            flexDirection: "row",
           }}
         >
-          <header style={{ flex: 1 }}>
-            <img
-              src={getUrlImage(comicsDetail, "portrait_xlarge")}
-              className="App-logo"
-              alt="logo"
-            />
-          </header>
-          <article style={{ flex: 4 }}>
-            <section>
-              <Typography variant="h6">{comicsDetail.title}</Typography>
-            </section>
-          </article>
+          <Grid container >
+            <Grid item xs={12} md={4}>
+              <ComicCover />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <ComicData />
+            </Grid>
+          </Grid>
         </main>
       )}
     </DialogContent>

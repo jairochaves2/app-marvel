@@ -1,9 +1,11 @@
-export default interface ComicSelect {
-  id: number;
-  title: string;
-}
+import { Result } from "../../MarvelApi.interface";
+
+// export default interface ComicSelect {
+//   id: number;
+//   title: string;
+// }
 
 export interface ComicSelectionContextType {
-  comicsSelect: ComicSelect[];
-  setComicsSelect: (comic: ComicSelect) => void;
+  comicsSelect: Result[];
+  setComicsSelect: (comic: Result | undefined) => void;
 }
