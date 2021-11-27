@@ -15,7 +15,7 @@ export default function ButtonToggleSelectComic({ comic }: Props) {
     <Button
       onClick={() => {
         if (comic) {
-          setComicsSelect({ id: comic.id, title: comic.title });
+          setComicsSelect(comic);
         }
       }}
       size="small"
