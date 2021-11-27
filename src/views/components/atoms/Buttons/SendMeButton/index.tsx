@@ -2,19 +2,24 @@ import { LocationOn } from "@mui/icons-material";
 import { Button, Grid, Hidden } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelectedComics } from "../../../../hooks/contexts.hooks";
-const EnvieButton: React.FC = () => {
+import { useSelectedComics } from "../../../../../hooks/contexts.hooks";
+const SendMeButton: React.FC = () => {
   const { comicsSelect } = useSelectedComics();
 
   return (
     <Hidden xsUp={comicsSelect.length <= 0}>
       <Grid item xs={5} sm={3} md={2}>
-        <Link style={{ textDecoration: "none" }} to="/">
+        <Link style={{ textDecoration: "none" }} to="/send-me">
           <Button
             startIcon={<LocationOn />}
             fullWidth
             color="info"
             variant="outlined"
+            onClick={() => {
+              navigator.geolocation.getCurrentPosition((location) => {
+                console.log(location.coords);
+              });
+            }}
           >
             Envie-me
           </Button>
@@ -24,4 +29,4 @@ const EnvieButton: React.FC = () => {
   );
 };
 
-export default EnvieButton;
+export default SendMeButton;
