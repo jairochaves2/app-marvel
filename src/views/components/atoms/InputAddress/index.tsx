@@ -8,7 +8,6 @@ export default function InputAddress() {
     <div style={{ paddingTop: 8, paddingLeft: 8, paddingRight: 8 }}>
       <TextField
         label="Endereço"
-        defaultValue="Hello World"
         placeholder="Buscar"
         fullWidth
         value={address}
